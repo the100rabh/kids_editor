@@ -25,14 +25,15 @@ class Editor {
     final chr = String.fromCharCodes([event.charCode]);
     log('character got is $chr');
     if (alphabets.containsKey(chr.toUpperCase())) {
-      final imageElement = alphabets[chr.toUpperCase()].clone(true) as ImageElement;
+      final imageElement =
+          alphabets[chr.toUpperCase()].clone(true) as ImageElement;
       imageElement.style.position = 'absolute';
       final left = 50 * elements++;
       imageElement.style.left = '${left}px';
       imageElement.style.top = '${top}px';
       textArea.append(imageElement);
     }
-    if(event.charCode == 13){
+    if (event.charCode == 13) {
       top += 50;
       elements = 0;
     }
@@ -73,7 +74,7 @@ class Editor {
 
   void addImage(String alphabet) {
     final imageElement = ImageElement(
-      src: 'assets/$alphabet.gif',
+      src: 'assets/${alphabet}.gif',
       height: 100,
       width: 100,
     );
@@ -86,6 +87,8 @@ class Editor {
     loadCounter++;
     if (loadCounter > 25) {
       log('all loaded loadCounter = $loadCounter');
+      final dummy = querySelector('#dummy') as DivElement;
+      alphabets.forEach((string, alphabetImage) => dummy.append(alphabetImage));
     }
   }
 }
