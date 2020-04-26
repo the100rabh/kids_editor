@@ -7,7 +7,7 @@ Editor editor;
 
 void main() {
   pwa.Client();
-  editor = Editor(querySelector('#editor'), querySelector('#body'));
+  editor = Editor(querySelector('#editor'));
   ButtonInputElement btnClear = querySelector('#btnClearText');
   btnClear.onClick.listen(editor.clearDocument);
 }

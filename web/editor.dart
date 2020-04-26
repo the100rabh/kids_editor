@@ -2,40 +2,43 @@ import 'dart:developer';
 import 'dart:html';
 
 class Editor {
-  final DivElement textArea;
-  final BodyElement body;
-  final Map<String, ImageElement> alphabets = {};
+  static const _EDIT_AREA_TOP = 110;
 
-  int loadCounter = 0;
-  int elements = 0;
+  final DivElement _textArea;
+  final Map<String, ImageElement> _alphabets = {};
 
-  int top = 10;
-  Editor(this.textArea, this.body) {
+
+  int _loadCounter = 0;
+  int _elements = 0;
+  int _top = _EDIT_AREA_TOP;
+
+  Editor(DivElement textArea) : _textArea = textArea {
     window.onKeyPress.listen(KeyEventListener);
     loadImages();
   }
 
   void clearDocument(MouseEvent event) {
-    textArea.setInnerHtml('');
-    elements = 0;
-    top = 10;
+    log(r'clear document called');
+    _textArea.children.clear();
+    _elements = 0;
+    _top = _EDIT_AREA_TOP;
   }
 
   void KeyEventListener(KeyboardEvent event) {
     final chr = String.fromCharCodes([event.charCode]);
     log('character got is $chr');
-    if (alphabets.containsKey(chr.toUpperCase())) {
+    if (_alphabets.containsKey(chr.toUpperCase())) {
       final imageElement =
-          alphabets[chr.toUpperCase()].clone(true) as ImageElement;
+          _alphabets[chr.toUpperCase()].clone(true) as ImageElement;
       imageElement.style.position = 'absolute';
-      final left = 50 * elements++;
+      final left = 50 * _elements++;
       imageElement.style.left = '${left}px';
-      imageElement.style.top = '${top}px';
-      textArea.append(imageElement);
+      imageElement.style.top = '${_top}px';
+      _textArea.append(imageElement);
     }
     if (event.charCode == 13) {
-      top += 50;
-      elements = 0;
+      _top += 50;
+      _elements = 0;
     }
   }
 
@@ -80,15 +83,13 @@ class Editor {
     );
 
     imageElement.onLoad.listen(loadCount);
-    alphabets[alphabet] = imageElement;
+    _alphabets[alphabet] = imageElement;
   }
 
   void loadCount(Event event) {
-    loadCounter++;
-    if (loadCounter > 25) {
-      log('all loaded loadCounter = $loadCounter');
-      final dummy = querySelector('#dummy') as DivElement;
-      alphabets.forEach((string, alphabetImage) => dummy.append(alphabetImage));
+    _loadCounter++;
+    if (_loadCounter > 25) {
+      log('all loaded loadCounter = $_loadCounter');
     }
   }
 }
