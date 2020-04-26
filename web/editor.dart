@@ -38,6 +38,9 @@ class Editor {
       _textArea.append(imageElement);            
       needsNewline = checkIfNeedsNewline(imageElement);
     }
+    if(event.charCode == ' '.codeUnitAt(0)){
+      _elements++;
+    }
     if (event.charCode == 13 || needsNewline) {
       _top += 50;
       _elements = 0;
