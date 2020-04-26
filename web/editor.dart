@@ -6,7 +6,7 @@ class Editor {
 
   final DivElement _textArea;
   final Map<String, ImageElement> _alphabets = {};
-
+  var lastImageElement;
 
   int _loadCounter = 0;
   int _elements = 0;
@@ -27,6 +27,7 @@ class Editor {
   void KeyEventListener(KeyboardEvent event) {
     final chr = String.fromCharCodes([event.charCode]);
     log('character got is $chr');
+    var needsNewline = false;
     if (_alphabets.containsKey(chr.toUpperCase())) {
       final imageElement =
           _alphabets[chr.toUpperCase()].clone(true) as ImageElement;
@@ -34,9 +35,10 @@ class Editor {
       final left = 50 * _elements++;
       imageElement.style.left = '${left}px';
       imageElement.style.top = '${_top}px';
-      _textArea.append(imageElement);
+      _textArea.append(imageElement);            
+      needsNewline = checkIfNeedsNewline(imageElement);
     }
-    if (event.charCode == 13) {
+    if (event.charCode == 13 || needsNewline) {
       _top += 50;
       _elements = 0;
     }
@@ -91,5 +93,10 @@ class Editor {
     if (_loadCounter > 25) {
       log('all loaded loadCounter = $_loadCounter');
     }
+  }
+
+  bool checkIfNeedsNewline(Element imageElement){
+    final boundingRect = imageElement.getBoundingClientRect();
+      return boundingRect.right + 50 >= window.innerWidth;
   }
 }
