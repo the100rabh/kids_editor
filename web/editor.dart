@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:html';
 
 class Editor {
-  static const _EDIT_AREA_TOP = 130;
+  static const _EDIT_AREA_TOP = 140;
 
   final DivElement _textArea;
   final Map<String, ImageElement> _alphabets = {};
