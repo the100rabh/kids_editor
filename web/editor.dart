@@ -38,7 +38,7 @@ class Editor {
       imageElement.style.top = '${_top}px';
       imageElement.className = 'bounce';
       _textArea.append(imageElement);
-      imageElement.scrollIntoView();
+      window.scrollTo(imageElement.offsetLeft, imageElement.offsetTop);
       needsNewline = checkIfNeedsNewline(imageElement);
     }
     if (event.charCode == ' '.codeUnitAt(0)) {
