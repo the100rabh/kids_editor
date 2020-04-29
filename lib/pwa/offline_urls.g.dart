@@ -72,4 +72,4 @@ final List<String> offlineUrls = [
 ];
 
 /// Last modified timestamp of the files
-final String lastModified = '2020-04-29T10:08:21.106Z';
+final String lastModified = '2020-04-29T21:48:49.472Z';
