@@ -37,8 +37,11 @@ class Editor {
       imageElement.style.left = '${left}px';
       imageElement.style.top = '${_top}px';
       imageElement.className = 'bounce';
+      imageElement.addEventListener('animationend',
+          (event) => window.scrollTo(left, _top, {'ScrollBehavior': 'smooth'}));
+      imageElement.addEventListener('webkitAnimationEnd',
+          (event) => window.scrollTo(left, _top, {'ScrollBehavior': 'smooth'}));
       _textArea.append(imageElement);
-      window.scrollTo(imageElement.offsetLeft, imageElement.offsetTop);
       needsNewline = checkIfNeedsNewline(imageElement);
     }
     if (event.charCode == ' '.codeUnitAt(0)) {
