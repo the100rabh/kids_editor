@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:html';
 
 class Editor {
-  static const _EDIT_AREA_TOP = 110;
+  static const _EDIT_AREA_TOP = 130;
 
   final DivElement _textArea;
   final Map<String, ImageElement> _alphabets = {};
@@ -22,6 +22,7 @@ class Editor {
     _textArea.children.clear();
     _elements = 0;
     _top = _EDIT_AREA_TOP;
+    _textArea.focus();
   }
 
   void KeyEventListener(KeyboardEvent event) {
@@ -35,10 +36,12 @@ class Editor {
       final left = 50 * _elements++;
       imageElement.style.left = '${left}px';
       imageElement.style.top = '${_top}px';
-      _textArea.append(imageElement);            
+      imageElement.className = 'bounce';
+      _textArea.append(imageElement);
+      imageElement.scrollIntoView();
       needsNewline = checkIfNeedsNewline(imageElement);
     }
-    if(event.charCode == ' '.codeUnitAt(0)){
+    if (event.charCode == ' '.codeUnitAt(0)) {
       _elements++;
     }
     if (event.charCode == 13 || needsNewline) {
@@ -98,8 +101,8 @@ class Editor {
     }
   }
 
-  bool checkIfNeedsNewline(Element imageElement){
+  bool checkIfNeedsNewline(Element imageElement) {
     final boundingRect = imageElement.getBoundingClientRect();
-      return boundingRect.right + 50 >= window.innerWidth;
+    return boundingRect.right + 50 >= window.innerWidth;
   }
 }
