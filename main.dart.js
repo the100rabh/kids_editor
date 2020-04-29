@@ -1422,7 +1422,7 @@ dG:function dG(a){this.a=a}},E={bh:function bh(a,b){var _=this
 _.a=a
 _.b=b
 _.e=_.d=0
-_.f=110},cT:function cT(a){this.a=a}},F={
+_.f=130},cT:function cT(a){this.a=a}},F={
 hO:function(){var u,t,s,r
 U.iE("./pwa.dart.js")
 u=document
@@ -3044,30 +3044,35 @@ H.q(a,"$iN")
 P.h6("clear document called")
 u=this.a;(u&&C.t).ay(u)
 this.e=0
-this.f=110},
-at:function(a){var u,t,s,r,q,p=this
+this.f=130
+u.focus()},
+at:function(a){var u,t,s,r,q,p,o=this
 H.q(a,"$ia9")
 u=P.iy(H.H([a.charCode],[P.G]))
 P.h6("character got is "+u)
-t=p.b
+t=o.b
 if(t.af(0,u.toUpperCase())){s=H.fc(t.j(0,u.toUpperCase()).cloneNode(!0),"$iay")
 t=s.style
 t.position="absolute"
-t=p.e++
+t=o.e++
 r=s.style
 t=""+50*t+"px"
 r.left=t
 t=s.style
-r=""+p.f+"px"
+r=""+o.f+"px"
 t.top=r
-p.a.appendChild(s)
+s.className="bounce"
+o.a.appendChild(s)
+q=!!s.scrollIntoViewIfNeeded
+if(q)s.scrollIntoViewIfNeeded()
+else s.scrollIntoView()
 t=s.getBoundingClientRect().right
 r=window.innerWidth
 if(typeof r!=="number")return H.hL(r)
-q=t+50>=r}else q=!1
-if(a.charCode===32)++p.e
-if(a.charCode===13||q){p.f+=50
-p.e=0}},
+p=t+50>=r}else p=!1
+if(a.charCode===32)++o.e
+if(a.charCode===13||p){o.f+=50
+o.e=0}},
 aS:function(){C.a.n(H.H(["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],[P.j]),new E.cT(this))},
 aR:function(a){var u=++this.d
 if(u>25)P.h6("all loaded loadCounter = "+u)}}
