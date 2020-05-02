@@ -29,6 +29,7 @@ class Editor {
     final chr = String.fromCharCodes([event.charCode]);
     log('character got is $chr');
     var needsNewline = false;
+    var handled = false;
     if (_alphabets.containsKey(chr.toUpperCase())) {
       final imageElement =
           _alphabets[chr.toUpperCase()].clone(true) as ImageElement;
@@ -37,15 +38,40 @@ class Editor {
       imageElement.style.left = '${left}px';
       imageElement.style.top = '${_top}px';
       imageElement.className = 'bounce';
-      imageElement.addEventListener('animationend',
-          (event) => window.scrollTo(left, _top, {'ScrollBehavior': 'smooth'}));
-      imageElement.addEventListener('webkitAnimationEnd',
-          (event) => window.scrollTo(left, _top, {'ScrollBehavior': 'smooth'}));
+      imageElement.addEventListener(
+        'animationend',
+        (event) => window.scrollTo(left, _top, {'ScrollBehavior': 'smooth'}),
+      );
+      imageElement.addEventListener(
+        'webkitAnimationEnd',
+        (event) => window.scrollTo(left, _top, {'ScrollBehavior': 'smooth'}),
+      );
       _textArea.append(imageElement);
       needsNewline = checkIfNeedsNewline(imageElement);
+      handled = true;
     }
     if (event.charCode == ' '.codeUnitAt(0)) {
       _elements++;
+    } else if (!handled) {
+      var regExp = RegExp(r'^[^\p{Cc}\p{Cf}\p{Zl}\p{Zp}]');
+      if (regExp.hasMatch(chr)) {
+        final span = SpanElement();
+        span.appendText(chr);
+        span.className = 'spanText textAnimation';
+        final left = 50 * _elements++;
+        span.style.left = '${left}px';
+        span.style.top = '${_top}px';
+        span.addEventListener(
+          'animationstart',
+          (event) => window.scrollTo(left, _top, {'ScrollBehavior': 'smooth'}),
+        );
+        span.addEventListener(
+          'webkitAnimationStart',
+          (event) => window.scrollTo(left, _top, {'ScrollBehavior': 'smooth'}),
+        );
+        _textArea.append(span);
+        needsNewline = checkIfNeedsNewline(span);
+      }
     }
     if (event.charCode == 13 || needsNewline) {
       _top += 50;
