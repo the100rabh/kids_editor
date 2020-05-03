@@ -7,13 +7,22 @@ html, body {
   font-family: 'Roboto', sans-serif;
 }
 
-.header_area{
+.header_area {
   margin: 0px 0px 0px 10px;
 }
 
 #output {
   padding: 20px;
   text-align: center;
+}
+
+.spanText {
+  position: absolute;
+  font-size: 40px;
+  margin-top: 25px;
+  margin-left: 40px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 @-webkit-keyframes bounce {
@@ -54,3 +63,41 @@ html, body {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
+
+@-webkit-keyframes textAnimation {
+  0%, 40% {
+    -webkit-transform: rotate(0) ;  /*scale(1);*/
+    text-shadow: 2px 2px 5px;
+  }
+  20% {
+    -webkit-transform: rotate(360deg); /*scale(0.9);*/
+    text-shadow: 4px 2px 9px;
+  }
+  /* 60% {
+    -webkit-transform: rotatescale(1);
+    text-shadow: 2px 4px 2px;
+  } */
+}
+
+@keyframes textAnimation {
+  0%, 40% {
+    transform: rotate(0); /*scale(1);*/
+    text-shadow: 2px 2px 5px;
+  }
+  20% {
+    transform: rotate(360deg); /*scale(0.9);*/
+    text-shadow: 4px 2px 9px;
+  }
+  /* 60% {
+    transform: scale(1);
+    text-shadow: 2px 4px 2px;
+  } */
+}
+
+.textAnimation {
+  -webkit-animation: textAnimation 5s ease-in-out infinite both;
+  animation: textAnimation 5s ease-in-out infinite both;
+}
+
+
+
