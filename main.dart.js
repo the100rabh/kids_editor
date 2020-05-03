@@ -3103,6 +3103,7 @@ s.className="bounce";(s&&C.k).M(s,"animationend",new E.cV(l,r))
 C.k.M(s,"webkitAnimationEnd",new E.cW(l,r))
 l.a.appendChild(s)
 p=l.aj(s)
+a.preventDefault()
 o=!0}else{p=!1
 o=!1}if(a.charCode===32)++l.e
 else if(!o){n=P.iH("^[^\\p{Cc}\\p{Cf}\\p{Zl}\\p{Zp}]")
@@ -3120,14 +3121,16 @@ t.top=q
 C.o.M(m,"animationstart",new E.cX(l,r))
 C.o.M(m,"webkitAnimationStart",new E.cY(l,r))
 l.a.appendChild(m)
-p=l.aj(m)}}if(a.charCode===13||p){l.f+=50
-l.e=0}},
+p=l.aj(m)
+a.preventDefault()}}if(a.charCode===13||p){l.f+=50
+l.e=0
+a.preventDefault()}},
 aW:function(){C.a.n(H.H(["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"],[P.j]),new E.cZ(this))},
 aV:function(a){var u=++this.d
 if(u>25)P.hg("all loaded loadCounter = "+u)},
 aj:function(a){var u=a.getBoundingClientRect().right,t=window.innerWidth
 if(typeof t!=="number")return H.hV(t)
-return u+50>=t}}
+return u+60>=t}}
 E.cV.prototype={
 $1:function(a){H.p(a,"$ic")
 return C.f.H(window,this.b,this.a.f,P.di(["ScrollBehavior","smooth"]))},
