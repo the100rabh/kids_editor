@@ -49,6 +49,7 @@ class Editor {
       _textArea.append(imageElement);
       needsNewline = checkIfNeedsNewline(imageElement);
       handled = true;
+      event.preventDefault(); 
     }
     if (event.charCode == ' '.codeUnitAt(0)) {
       _elements++;
@@ -71,11 +72,13 @@ class Editor {
         );
         _textArea.append(span);
         needsNewline = checkIfNeedsNewline(span);
+        event.preventDefault();
       }
     }
     if (event.charCode == 13 || needsNewline) {
       _top += 50;
       _elements = 0;
+      event.preventDefault();
     }
   }
 
@@ -132,6 +135,6 @@ class Editor {
 
   bool checkIfNeedsNewline(Element imageElement) {
     final boundingRect = imageElement.getBoundingClientRect();
-    return boundingRect.right + 50 >= window.innerWidth;
+    return boundingRect.right + 60 >= window.innerWidth;
   }
 }
