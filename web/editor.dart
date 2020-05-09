@@ -1,6 +1,9 @@
 import 'dart:developer';
 import 'dart:html';
 
+final _width_for_padding = 60;
+final _text_element_padding = 100;
+
 class Editor {
   static const _EDIT_AREA_TOP = 140;
 
@@ -49,7 +52,7 @@ class Editor {
       _textArea.append(imageElement);
       needsNewline = checkIfNeedsNewline(imageElement);
       handled = true;
-      event.preventDefault(); 
+      event.preventDefault();
     }
     if (event.charCode == ' '.codeUnitAt(0)) {
       _elements++;
@@ -59,6 +62,14 @@ class Editor {
         final span = SpanElement();
         span.appendText(chr);
         span.className = 'spanText textAnimation';
+        if (span.getBoundingClientRect().width +
+                50 * _elements +
+                _text_element_padding >
+            window.innerWidth) {
+          _top += 50;
+          _elements = 0;
+          log('moved to new line');
+        }
         final left = 50 * _elements++;
         span.style.left = '${left}px';
         span.style.top = '${_top}px';
@@ -135,6 +146,6 @@ class Editor {
 
   bool checkIfNeedsNewline(Element imageElement) {
     final boundingRect = imageElement.getBoundingClientRect();
-    return boundingRect.right + 60 >= window.innerWidth;
+    return boundingRect.right + _width_for_padding >= window.innerWidth;
   }
 }
