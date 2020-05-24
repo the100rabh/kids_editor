@@ -37,6 +37,14 @@ class Editor {
       final imageElement =
           _alphabets[chr.toUpperCase()].clone(true) as ImageElement;
       imageElement.style.position = 'absolute';
+      if (imageElement.getBoundingClientRect().width +
+              50 * _elements +
+              _text_element_padding >
+          window.innerWidth) {
+        _top += 50;
+        _elements = 0;
+        log('moved to new line');
+      }
       final left = 50 * _elements++;
       imageElement.style.left = '${left}px';
       imageElement.style.top = '${_top}px';
