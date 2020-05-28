@@ -37,13 +37,7 @@ final List<String> offlineUrls = [
   './favicon.ico',
   './main.dart.js',
   './manifest.json',
-  './packages/\$sdk/_internal/ddc_sdk.sum',
   './packages/\$sdk/_internal/strong.sum',
-  './packages/\$sdk/dev_compiler/amd/dart_sdk.js',
-  './packages/\$sdk/dev_compiler/amd/require.js',
-  './packages/\$sdk/dev_compiler/common/dart_sdk.js',
-  './packages/\$sdk/dev_compiler/common/run.js',
-  './packages/\$sdk/dev_compiler/es6/dart_sdk.js',
   './packages/\$sdk/dev_compiler/kernel/amd/dart_sdk.js',
   './packages/\$sdk/dev_compiler/kernel/amd/require.js',
   './packages/\$sdk/dev_compiler/kernel/common/dart_sdk.js',
@@ -72,4 +66,4 @@ final List<String> offlineUrls = [
 ];
 
 /// Last modified timestamp of the files
-final String lastModified = '2020-05-03T14:48:21.438Z';
+final String lastModified = '2020-05-28T08:59:29.749Z';
