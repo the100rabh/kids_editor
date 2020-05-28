@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:html';
 
 final _width_for_padding = 60;
-final _text_element_padding = 100;
+final _text_element_padding = 60;
 
 class Editor {
   static const _EDIT_AREA_TOP = 140;
@@ -14,6 +14,8 @@ class Editor {
   int _loadCounter = 0;
   int _elements = 0;
   int _top = _EDIT_AREA_TOP;
+
+  final _default_text_width = 50;
 
   Editor(DivElement textArea) : _textArea = textArea {
     window.onKeyPress.listen(KeyEventListener);
@@ -70,10 +72,8 @@ class Editor {
         final span = SpanElement();
         span.appendText(chr);
         span.className = 'spanText textAnimation';
-        if (span.getBoundingClientRect().width +
-                50 * _elements +
-                _text_element_padding >
-            window.innerWidth) {
+        log('width is ${span.getBoundingClientRect().width}');
+        if (_default_text_width + 50 * _elements + _text_element_padding > window.innerWidth) {
           _top += 50;
           _elements = 0;
           log('moved to new line');
