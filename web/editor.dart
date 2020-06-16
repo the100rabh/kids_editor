@@ -39,10 +39,7 @@ class Editor {
       final imageElement =
           _alphabets[chr.toUpperCase()].clone(true) as ImageElement;
       imageElement.style.position = 'absolute';
-      if (imageElement.getBoundingClientRect().width +
-              50 * _elements +
-              _text_element_padding >
-          window.innerWidth) {
+      if (50 * (_elements + 1) + _text_element_padding > window.innerWidth) {
         _top += 50;
         _elements = 0;
         log('moved to new line');
@@ -73,7 +70,7 @@ class Editor {
         span.appendText(chr);
         span.className = 'spanText textAnimation';
         log('width is ${span.getBoundingClientRect().width}');
-        if (_default_text_width + 50 * _elements + _text_element_padding > window.innerWidth) {
+        if (50 * (_elements + 1) + _text_element_padding > window.innerWidth) {
           _top += 50;
           _elements = 0;
           log('moved to new line');
